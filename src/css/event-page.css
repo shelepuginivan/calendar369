@@ -1,0 +1,67 @@
+.event-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    height: 100vh;
+}
+
+.event-content-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+}
+
+.this-event-card, .event-settings {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 40%;
+    background: white;
+    box-shadow: 0 2px 6px #152d6714;
+    margin: 18px auto auto;
+}
+
+.control-btn {
+    transition: .2s all ease-in;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    font-size: 16px;
+    outline: 1px solid;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    justify-self: center;
+}
+
+.event-delete-btn {
+    color: red;
+    outline-color: red;
+}
+
+.event-delete-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.event-registration-btn {
+    color: darkgreen;
+    outline-color: darkgreen;
+}
+
+.event-registration-btn:hover {
+    color: white;
+    background-color: darkgreen;
+}
+
+.edit-link {
+    color: #333;
+    outline-color: #333;
+}
+
+.edit-link:hover {
+    color: white;
+    background-color: #333;
+}

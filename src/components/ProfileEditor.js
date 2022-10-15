@@ -14,7 +14,6 @@ const ProfileEditor = () => {
     const [newUsername, setNewUsername] = useState(sessionStorage.getItem('username'))
 
     const editProfile = async () => {
-
         const thisUserRef = doc(firestore, 'users', sessionStorage.getItem('_id'))
         const usersRef = collection(firestore, 'users')
         const usersDocsRef = await getDocs(query(usersRef, where('username', '==', newUsername)))
@@ -59,7 +58,7 @@ const ProfileEditor = () => {
                         <input onChange={event => setNewBirthdate(event.target.value)} value={newBirthdate} id="update-birthdate-input" type="date"/>
                     </div>
 
-                    <button onClick={editProfile} className="btn-confirm-edit">Сохранить изменения</button>
+                    <button onClick={editProfile} className="btn-confirm-edit"><span className="icon-confirm"></span> Сохранить изменения</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {PROFILE_EDIT_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {PROFILE_CREATE_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import '../css/profile.css'
 import Header from "./Header";
 import {firestore} from "../index";
@@ -46,8 +46,8 @@ const Profile = () => {
                     </div>
                     <div className="profile-card account-control">
                         <h2>Управление аккаунтом</h2>
-                        <Link to={PROFILE_EDIT_ROUTE} className="control-btn edit-btn">Редактировать данные</Link>
-                        <button type="button" className="control-btn delete-btn" onClick={deleteUser}>Удалить аккаунт</button>
+                        <Link to={PROFILE_CREATE_ROUTE} className="control-btn edit-btn"><span className="icon-edit"></span> Редактировать данные</Link>
+                        <button type="button" className="control-btn delete-btn" onClick={deleteUser}><span className="icon-del"></span> Удалить аккаунт</button>
                     </div>
                 </div>
             </div>

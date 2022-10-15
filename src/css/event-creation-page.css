@@ -1,0 +1,91 @@
+.event-creation-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    height: 100vh;
+}
+
+.event-creation-container {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.event-creation-page-header {
+    width: 60%;
+    margin-inline: auto;
+}
+
+.event-creation-inputs {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 60%;
+    background: white;
+    box-shadow: 0 2px 6px #152d6714;
+    margin: 18px auto 30px auto;
+}
+
+.event-input {
+    transition: .2s all ease-in;
+    display: flex;
+    height: fit-content;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.event-input label {
+    transition: .2s all ease-in;
+    color: #999;
+    width: 85px;
+    margin-right: 5px;
+}
+
+.event-input input {
+    width: 100%;
+    border: 0;
+    background: transparent;
+}
+
+.event-input textarea {
+    resize: vertical;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.event-input textarea:focus-within {
+    outline: none;
+}
+
+.event-input input:focus-within {
+    border-color: #fff;
+    outline: none;
+}
+
+.event-input:focus-within {
+    border-color: darkgreen;
+}
+
+.event-input:focus-within > label {
+    color: darkgreen;
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+.btn-confirm-event-data {
+    transition: .2s all ease-in;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    outline: 1px solid darkgreen;
+    color: darkgreen;
+    cursor: pointer;
+    background: transparent;
+    margin-top: 25px;
+}
+
+.btn-confirm-event-data:hover {
+    background: darkgreen;
+    color: white;
+}

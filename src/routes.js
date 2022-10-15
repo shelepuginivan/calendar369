@@ -1,8 +1,8 @@
 import {
-    ALL_EVENTS_ROUTE,
+    ALL_EVENTS_ROUTE, EVENT_EDITOR_ROUTE,
     INDEX_ROUTE,
     LOGIN_ROUTE,
-    MY_EVENTS_ROUTE, PROFILE_EDIT_ROUTE, PROFILE_ROUTE,
+    MY_EVENTS_ROUTE, PROFILE_CREATE_ROUTE, PROFILE_ROUTE,
     REGISTRATION_ROUTE,
     USER_REGISTERED_EVENTS_ROUTE
 } from "./utils/consts";
@@ -11,6 +11,8 @@ import Registration from "./components/Registration";
 import Profile from "./components/Profile";
 import IndexPage from "./components/IndexPage";
 import ProfileEditor from "./components/ProfileEditor";
+import EventCreationPage from "./components/EventCreationPage";
+import MyEvents from "./components/MyEvents";
 
 export const publicRoutes = [
     {
@@ -20,7 +22,7 @@ export const publicRoutes = [
     {
         path: REGISTRATION_ROUTE,
         Component: Registration
-    }
+    },
 ];
 
 export const studentRoutes = [
@@ -41,7 +43,7 @@ export const studentRoutes = [
         Component: Profile
     },
     {
-        path: PROFILE_EDIT_ROUTE,
+        path: PROFILE_CREATE_ROUTE,
         Component: ProfileEditor
     }
 ];
@@ -57,14 +59,18 @@ export const teacherRoutes = [
     },
     {
         path: MY_EVENTS_ROUTE,
-        Component: null
+        Component: MyEvents
     },
     {
         path: PROFILE_ROUTE,
         Component: Profile
     },
     {
-        path: PROFILE_EDIT_ROUTE,
+        path: PROFILE_CREATE_ROUTE,
         Component: ProfileEditor
-    }
+    },
+    {
+        path: EVENT_EDITOR_ROUTE,
+        Component: EventCreationPage
+    },
 ]
