@@ -32,16 +32,26 @@ const EventEditor = () => {
 
     const editEvent = async () => {
         const thisEventRef = doc(firestore, 'events', eventId)
-        if (title && desc && profile && type && deadline) {
-            await updateDoc(thisEventRef, {
+        const newEventData = {
                 title: title,
                 description: desc,
-                creator: sessionStorage.getItem('username'),
+                creator: localStorage.getItem('username'),
                 creationDate: serverTimestamp(),
                 deadline: deadline,
                 profile: profile,
                 type: type
+            }
+        if (title && desc && profile && type && deadline) {
+            await updateDoc(thisEventRef, newEventData)
+            const myEvents = JSON.parse(sessionStorage.getItem('myEvents'))
+            newEventData._id = eventId
+            myEvents.forEach(event => {
+                if (event._id === eventId) {
+                    myEvents.pop(event)
+                    myEvents.push(newEventData)
+                }
             })
+            sessionStorage.setItem('myEvents', JSON.stringify(myEvents))
             document.location.href = MY_EVENTS_ROUTE
         }
     }

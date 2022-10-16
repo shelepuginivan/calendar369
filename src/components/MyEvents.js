@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "./Header";
 import '../css/my-events.css'
 import {collection, getDocs, query, where} from "firebase/firestore";
@@ -6,17 +6,24 @@ import {firestore} from "../index";
 import {parseEvents} from "../utils/parseEvents";
 
 const MyEvents = () => {
-    const [allEvents, setAllEvents] = useState([])
+    const [allEvents, setAllEvents] = useState(JSON.parse(sessionStorage.getItem('myEvents')) ?? [])
 
-    const username = sessionStorage.getItem('username')
-    useMemo(() => {
+
+    const username = localStorage.getItem('username')
+    useEffect(() => {
         const getAllEvents = async () => {
         const eventsRef = collection(firestore, 'events')
         const allEventsDocs = await getDocs(query(eventsRef, where("creator", "==", username)))
         setAllEvents(parseEvents(allEventsDocs))
+        sessionStorage.setItem('myEvents', JSON.stringify(parseEvents(allEventsDocs)))
+        console.log(JSON.parse(sessionStorage.getItem('myEvents')))
+            console.log(allEvents, 'allEvents')
     }
-    getAllEvents().then(() => console.log('success'))
+    if (!sessionStorage.hasOwnProperty('myEvents')) {
+         getAllEvents().then(() => console.log('fetched'))
+    }
     }, [username])
+
 
     const compare = (event1, event2) => {
         if (event1.deadline < event2.deadline) {

@@ -90,3 +90,14 @@
     background-color: red;
     color: white;
 }
+
+.logout-btn {
+    margin-bottom: 35px !important;
+    color: red;
+    outline-color: red;
+}
+
+.logout-btn:hover {
+    background-color: red;
+    color: white;
+}

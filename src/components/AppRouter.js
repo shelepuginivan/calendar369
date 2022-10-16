@@ -6,9 +6,8 @@ import EventPage from "./EventPage";
 import EventEditor from "./EventEditor";
 
 const AppRouter = () => {
-    const user = sessionStorage.getItem('user');
-    const status = sessionStorage.getItem('status')
-    console.log(user)
+    const user = localStorage.getItem('user');
+    const status = localStorage.getItem('status')
     return user ?
         (
             status === 'student' ?

@@ -8,26 +8,26 @@ import {parseUsers} from "../utils/parseUsers";
 
 
 const ProfileEditor = () => {
-    const [newGrade, setNewGrade] = useState(sessionStorage.getItem('grade'))
-    const [newEmail, setNewEmail] = useState(sessionStorage.getItem('email'))
-    const [newBirthdate, setNewBirthdate] = useState(sessionStorage.getItem('birthdate'))
-    const [newUsername, setNewUsername] = useState(sessionStorage.getItem('username'))
+    const [newGrade, setNewGrade] = useState(localStorage.getItem('grade'))
+    const [newEmail, setNewEmail] = useState(localStorage.getItem('email'))
+    const [newBirthdate, setNewBirthdate] = useState(localStorage.getItem('birthdate'))
+    const [newUsername, setNewUsername] = useState(localStorage.getItem('username'))
 
     const editProfile = async () => {
-        const thisUserRef = doc(firestore, 'users', sessionStorage.getItem('_id'))
+        const thisUserRef = doc(firestore, 'users', localStorage.getItem('_id'))
         const usersRef = collection(firestore, 'users')
         const usersDocsRef = await getDocs(query(usersRef, where('username', '==', newUsername)))
         const usersDocs = parseUsers(usersDocsRef)
-        const setUsername = usersDocs.length === 0 ? newUsername : sessionStorage.getItem('username')
+        const setUsername = usersDocs.length === 0 ? newUsername : localStorage.getItem('username')
         await updateDoc(thisUserRef, {
             username: setUsername,
             grade: newGrade,
             email: newEmail,
         })
-        sessionStorage.setItem('grade', newGrade)
-        sessionStorage.setItem('email', newEmail)
-        sessionStorage.setItem('birthdate', newBirthdate.split('-').reverse().join('.'))
-        sessionStorage.setItem('username', setUsername)
+        localStorage.setItem('grade', newGrade)
+        localStorage.setItem('email', newEmail)
+        localStorage.setItem('birthdate', newBirthdate.split('-').reverse().join('.'))
+        localStorage.setItem('username', setUsername)
 
         document.location.href = PROFILE_ROUTE
     }

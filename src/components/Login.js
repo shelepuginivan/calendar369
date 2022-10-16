@@ -17,13 +17,13 @@ const Login = () => {
         const thisUser = await getDocs(query(usersRef, where("username", "==", username), where("password", "==", password)))
         const thisUserData = parseUsers(thisUser)
         if (thisUserData.length === 1) {
-            sessionStorage.setItem('_id', thisUserData[0]._id)
-            sessionStorage.setItem('status', userStatus(thisUserData[0].username))
-            sessionStorage.setItem('user', 'true')
-            sessionStorage.setItem('username', thisUserData[0].username)
-            sessionStorage.setItem('email', thisUserData[0].email)
-            sessionStorage.setItem('birthdate', thisUserData[0].birthdate)
-            sessionStorage.setItem('grade', thisUserData[0].grade)
+            localStorage.setItem('_id', thisUserData[0]._id)
+            localStorage.setItem('status', userStatus(thisUserData[0].username))
+            localStorage.setItem('user', 'true')
+            localStorage.setItem('username', thisUserData[0].username)
+            localStorage.setItem('email', thisUserData[0].email)
+            localStorage.setItem('birthdate', thisUserData[0].birthdate)
+            localStorage.setItem('grade', thisUserData[0].grade)
             document.location.href = INDEX_ROUTE
         }
 

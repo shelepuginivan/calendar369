@@ -22,9 +22,16 @@ const EventPage = () => {
     }, [eventId])
 
     const deleteEvent = async () => {
-        if (sessionStorage.getItem('username') === eventData.creator) {
+        if (localStorage.getItem('username') === eventData.creator) {
             const eventDoc = doc(firestore, 'events', eventId)
             await deleteDoc(eventDoc)
+            const myEvents = JSON.parse(sessionStorage.getItem('myEvents'))
+            myEvents.forEach(event => {
+                if (event._id === eventId) {
+                    myEvents.pop(event)
+                }
+            })
+            sessionStorage.setItem('myEvents', JSON.stringify(myEvents))
 
             document.location.href = MY_EVENTS_ROUTE
         }
@@ -44,7 +51,7 @@ const EventPage = () => {
                         <p className="event-data-caption">Дата события</p>
                         <p className="event-data">{eventData.deadline}</p>
                     </div>
-                {eventData.creator === sessionStorage.getItem('username') ?
+                {eventData.creator === localStorage.getItem('username') ?
                     (<div className="event-settings">
                         <h2 className="control-header">Действия</h2>
                         <button onClick={deleteEvent} className="control-btn event-delete-btn"><span className="icon-del"></span> Удалить событие</button>

@@ -13,17 +13,20 @@ const EventCreationPage = () => {
 
     const createEvent = async () => {
         const eventRef = collection(firestore, 'events')
-        if (title && desc && profile && type && deadline) {
-            await addDoc(eventRef, {
+        const newEventData = {
                 title: title,
                 description: desc,
-                creator: sessionStorage.getItem('username'),
+                creator: localStorage.getItem('username'),
                 creationDate: serverTimestamp(),
                 deadline: deadline,
                 profile: profile,
                 type: type
-            })
+            }
+        if (title && desc && profile && type && deadline) {
+            await addDoc(eventRef, newEventData)
+            sessionStorage.removeItem('myEvents')
             document.location.href = MY_EVENTS_ROUTE
+
         }
     }
 
