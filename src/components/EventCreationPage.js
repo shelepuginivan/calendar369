@@ -25,6 +25,7 @@ const EventCreationPage = () => {
         if (title && desc && profile && type && deadline) {
             await addDoc(eventRef, newEventData)
             sessionStorage.removeItem('myEvents')
+            sessionStorage.removeItem('recentEvents')
             document.location.href = MY_EVENTS_ROUTE
 
         }

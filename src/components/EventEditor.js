@@ -52,6 +52,7 @@ const EventEditor = () => {
                 }
             })
             sessionStorage.setItem('myEvents', JSON.stringify(myEvents))
+            sessionStorage.removeItem('recentEvents')
             document.location.href = MY_EVENTS_ROUTE
         }
     }

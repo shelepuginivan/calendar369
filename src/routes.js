@@ -13,6 +13,7 @@ import IndexPage from "./components/IndexPage";
 import ProfileEditor from "./components/ProfileEditor";
 import EventCreationPage from "./components/EventCreationPage";
 import MyEvents from "./components/MyEvents";
+import AllEvents from "./components/AllEvents";
 
 export const publicRoutes = [
     {
@@ -32,7 +33,7 @@ export const studentRoutes = [
     },
     {
         path: ALL_EVENTS_ROUTE,
-        Component: null
+        Component: AllEvents
     },
     {
         path: USER_REGISTERED_EVENTS_ROUTE,
@@ -55,7 +56,7 @@ export const teacherRoutes = [
     },
     {
         path: ALL_EVENTS_ROUTE,
-        Component: null
+        Component: AllEvents
     },
     {
         path: MY_EVENTS_ROUTE,
