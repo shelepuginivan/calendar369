@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    background-color: rgba(255,255,255,.3);
+    background-color: #FFFFFF4C;
     backdrop-filter: blur(10px);
     width: 50%;
     margin: auto;
@@ -20,43 +20,52 @@
 }
 
 .input {
-    transition: .5s all ease;
+    transition: .2s all ease-in;
     display: flex;
     height: fit-content;
-    align-items: center;
-    border: 2px solid #0a0908;
-    border-radius: 10px;
-    padding: 5px;
-    color: #0a0908;
-    margin-top: 0;
-    margin-bottom: 5px;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.input label {
+    transition: .2s all ease-in;
+    color: #999;
+    width: 85px;
+    margin-right: 5px;
 }
 
 .input input {
-    display: flex;
-    overflow: hidden;
-    flex-grow: 1;
-    height: 100%;
+    width: 100%;
     border: 0;
-    outline: none;
-    font-size: 16px;
-    background-color: transparent;
+    background: transparent;
 }
 
 .input input:focus-within {
     border-color: #fff;
-}
-
-.input label {
-    display: flex;
-    padding-right: 3px;
-    text-align: left;
-    width: 80px;
+    outline: none;
 }
 
 .input:focus-within {
-    transition: 0.5s;
-    border-color: #38aad3;
+    border-color: darkgreen;
+}
+
+.input:focus-within > label {
+    color: darkgreen;
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+.btn-confirm-edit {
+    transition: .2s all ease-in;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    outline: 1px solid darkgreen;
+    color: darkgreen;
+    cursor: pointer;
+    background: transparent;
+    margin-top: 25px;
 }
 
 .submit-btn {
@@ -72,7 +81,7 @@
 
 .submit-btn:hover {
     background-color: darkgreen;
-    color: white;
+    color: #fff;
 }
 
 
@@ -98,4 +107,10 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
+}
+
+@media screen and (max-width: 920px) {
+    .auth-form {
+        width: 80vw;
+    }
 }

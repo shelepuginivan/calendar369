@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?47zzph');
-  src:  url('fonts/icomoon.eot?47zzph#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?47zzph') format('truetype'),
-    url('fonts/icomoon.woff?47zzph') format('woff'),
-    url('fonts/icomoon.svg?47zzph#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?wpal25');
+  src:  url('fonts/icomoon.eot?wpal25#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wpal25') format('truetype'),
+    url('fonts/icomoon.woff?wpal25') format('woff'),
+    url('fonts/icomoon.svg?wpal25#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -34,8 +34,14 @@
 .icon-registration:before {
   content: "\e975";
 }
+.icon-search:before {
+  content: "\e986";
+}
 .icon-del:before {
   content: "\e9ac";
+}
+.icon-info:before {
+  content: "\ea0c";
 }
 .icon-cancel-reg:before {
   content: "\ea0e";

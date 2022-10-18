@@ -12,3 +12,10 @@
   background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(226,233,148,1) 100%);
   padding-top: 60px;
 }
+
+@media screen and (max-width: 770px) {
+  body {
+    margin-top: 15px;
+  }
+
+}

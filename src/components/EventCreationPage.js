@@ -18,7 +18,7 @@ const EventCreationPage = () => {
                 description: desc,
                 creator: localStorage.getItem('username'),
                 creationDate: serverTimestamp(),
-                deadline: deadline,
+                deadline: deadline.split('-').reverse().join('.'),
                 profile: profile,
                 type: type
             }
@@ -47,7 +47,25 @@ const EventCreationPage = () => {
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-profile">Профиль</label>
-                        <input value={profile} onChange={event => setProfile(event.target.value)} id="input-profile"  type="text"/>
+                        <input value={profile} onChange={event => setProfile(event.target.value)} id="input-profile"  type="text" list="profile-list"/>
+                        <datalist id="profile-list">
+                            <option value="Математика"></option>
+                            <option value="Физика"></option>
+                            <option value="Информатика"></option>
+                            <option value="География"></option>
+                            <option value="Биология"></option>
+                            <option value="Химия"></option>
+                            <option value="Экология"></option>
+                            <option value="Обществознание"></option>
+                            <option value="История"></option>
+                            <option value="Право"></option>
+                            <option value="Экономика"></option>
+                            <option value="Русский язык"></option>
+                            <option value="Литература"></option>
+                            <option value="Основы безопасности жизнедеятельности"></option>
+                            <option value="Физическая культура"></option>
+
+                        </datalist>
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-type">Тип</label>

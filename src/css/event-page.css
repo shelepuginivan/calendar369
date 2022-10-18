@@ -46,14 +46,24 @@
     color: white;
 }
 
-.event-registration-btn {
+.event-registration-btn[state="true"] {
     color: darkgreen;
     outline-color: darkgreen;
 }
 
-.event-registration-btn:hover {
+.event-registration-btn[state="true"]:hover {
     color: white;
     background-color: darkgreen;
+}
+
+.event-registration-btn[state="false"] {
+    color: red;
+    outline-color: red;
+}
+
+.event-registration-btn[state="false"]:hover {
+    color: white;
+    background-color: red;
 }
 
 .edit-link {

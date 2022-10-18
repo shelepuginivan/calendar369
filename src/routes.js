@@ -14,6 +14,7 @@ import ProfileEditor from "./components/ProfileEditor";
 import EventCreationPage from "./components/EventCreationPage";
 import MyEvents from "./components/MyEvents";
 import AllEvents from "./components/AllEvents";
+import UserRegisteredOnEvents from "./components/UserRegisteredOnEvents"
 
 export const publicRoutes = [
     {
@@ -37,7 +38,7 @@ export const studentRoutes = [
     },
     {
         path: USER_REGISTERED_EVENTS_ROUTE,
-        Component: null
+        Component: UserRegisteredOnEvents
     },
     {
         path: PROFILE_ROUTE,
