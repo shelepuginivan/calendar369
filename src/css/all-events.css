@@ -106,8 +106,36 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .unset-deadline-header {
     color: #999;
+}
+
+@media screen and (max-width: 1030px) {
+    .all-events-wrapper, .params-inputs {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .all-events-wrapper, .params-inputs {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width: 855px) {
+    .sort-input {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 693px) {
+    .sort-input {
+        font-size: 12px;
+    }
+    .unset-deadline-header {
+        font-size: 24px;
+    }
 }

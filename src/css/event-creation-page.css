@@ -89,3 +89,15 @@
     background: darkgreen;
     color: #fff;
 }
+
+@media screen and (max-width: 780px) {
+    .event-creation-inputs, .event-creation-page-header {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .event-creation-inputs, .event-creation-page-header {
+        width: 90%;
+    }
+}

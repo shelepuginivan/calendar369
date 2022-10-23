@@ -75,3 +75,23 @@
     color: white;
     background-color: #333;
 }
+
+@media screen and (max-width: 645px) {
+    .event-page {
+        height: unset;
+    }
+
+    .event-content-container {
+        flex-direction: column;
+    }
+
+    .this-event-card, .event-settings {
+        width: 90%;
+        margin-bottom: 15px;
+    }
+
+    .this-event-card {
+        margin-top: 80px;
+    }
+
+}
