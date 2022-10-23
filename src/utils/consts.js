@@ -7,5 +7,3 @@ export const USER_REGISTERED_EVENTS_ROUTE = '/events/myevents'
 export const EVENT_EDITOR_ROUTE = '/events/create-event'
 export const PROFILE_ROUTE = '/profile'
 export const PROFILE_CREATE_ROUTE = '/profile/edit'
-
-
