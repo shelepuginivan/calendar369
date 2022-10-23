@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import bcrypt from 'bcryptjs';
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import '../css/auth-form.css'
 import {Link} from "react-router-dom";
 import {firestore} from "../index";
 import { collection, addDoc, getDocs, where, query } from "firebase/firestore";
 import {parseUsers} from "../utils/parseUsers";
+import {SALT} from "../utils/salt";
 
 
 const Registration = () => {
@@ -15,14 +17,13 @@ const Registration = () => {
     const [password, setPassword] = useState('')
     const [repeatedPassword, setRepeatedPassword] = useState('')
 
-
     const registration = async () => {
         const userData = {
                 username: username,
                 email: email,
                 birthdate: birthdate.split('-').reverse().join('.'),
                 grade: grade,
-                password: password
+                password: bcrypt.hashSync(password, SALT).toString()
             }
         if (username && email && grade && birthdate && password && repeatedPassword === password) {
             const usersRef = collection(firestore, "users")

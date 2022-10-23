@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import bcrypt from 'bcryptjs'
 import {INDEX_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import '../css/auth-form.css'
 import {Link} from "react-router-dom";
@@ -6,6 +7,7 @@ import { collection, getDocs, where, query } from "firebase/firestore";
 import {firestore} from "../index";
 import {parseUsers} from "../utils/parseUsers";
 import {userStatus} from "../utils/userStatus";
+import {SALT} from "../utils/salt";
 
 
 const Login = () => {
@@ -14,7 +16,7 @@ const Login = () => {
 
     const login = async () => {
         const usersRef = collection(firestore, 'users')
-        const thisUser = await getDocs(query(usersRef, where("username", "==", username), where("password", "==", password)))
+        const thisUser = await getDocs(query(usersRef, where("username", "==", username), where("password", "==", bcrypt.hashSync(password, SALT).toString())))
         const thisUserData = parseUsers(thisUser)
         if (thisUserData.length === 1) {
             localStorage.setItem('_id', thisUserData[0]._id)
