@@ -18,11 +18,9 @@ const MyEvents = () => {
         const allEventsDocs = await getDocs(query(eventsRef, where("creator", "==", username)))
         setAllEvents(parseEvents(allEventsDocs))
         sessionStorage.setItem('myEvents', JSON.stringify(parseEvents(allEventsDocs)))
-        console.log(JSON.parse(sessionStorage.getItem('myEvents')))
-            console.log(allEvents, 'allEvents')
     }
     if (!sessionStorage.hasOwnProperty('myEvents')) {
-         getAllEvents().then(() => console.log('fetched'))
+         getAllEvents()
     }
     }, [username])
 

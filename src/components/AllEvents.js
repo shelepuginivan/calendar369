@@ -19,11 +19,9 @@ const AllEvents = () => {
             const eventsRef = collection(firestore, 'events')
             const allEvents = await getDocs(query(eventsRef, where("deadline", "==", deadline.split('-').reverse().join('.'))))
             setEvents(parseEvents(allEvents))
-            console.log(parseEvents(allEvents))
             sessionStorage.setItem(deadline, JSON.stringify(parseEvents(allEvents)))
         } else if (sessionStorage.hasOwnProperty(deadline)) {
             setEvents(JSON.parse(sessionStorage.getItem(deadline)))
-            console.log(JSON.parse(sessionStorage.getItem(deadline)))
         }
     }
 
