@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Календарь школьника
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Система для отслеживания внешкольных мероприятий и регистрации в них.
 
-## Available Scripts
+Проект реализован на базе ГБОУ Лицей №369 Красносельского района, Санкт-Петербург.
 
-In the project directory, you can run:
+## Аннотация
 
-### `npm start`
+Для развития современного ученика проводится огромное количество самых разных мероприятий:
+конференций, олимпиад. Нередки случаи, когда школьник ввиду загруженности в школе пропускает
+регистрацию или узнает о мероприятии поздно. Возникла необходимость создать ресурс, позволяющий
+решить данную проблему.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Была создана система для оповещения учащихся о предстоящих олимпиадах, конкурсах и других научных мероприятиях.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Ресурс реализован в виде веб-приложения, привязанного к системе лицея, представляющего собой календарь
+со списком событий, который формируют сами учителя-предметники. Ученик может самостоятельно выбрать нужные
+мероприятия. В свою очередь, учитель-куратор получает список всех участников события, может централизованно
+собрать их, спланировать дополнительные занятия по подготовке к мероприятию.
 
-### `npm test`
+Продукт реализован на языке JavaScript с использованием фреймворка React js, а также real-time баз данных Firebase.
+Данные технологии обеспечивают ряд преимуществ:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1) Удобство и скорость разработки
+2) Масштабируемость приложения
+3) Реализация асинхронности
+4) Легкость тестирования
+5) Высокая производительность и безопасность системы
 
-### `npm run build`
+Таким образом, созданный календарь позволяет учащимся быстро сориентироваться в информации о научных мероприятиях и датах их проведения.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Достижения
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+На данный момент я успел принять участие в конкурсе всероссийского уровня "ПредУниверсариум", в рамках
+групповой работы защитил свой проект и стал победителем. Итоговая защита проекта проводилась в Экспоцентре, г. Москва.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Обратная связь
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+По вопросам сотрудничества, а также при наличии вопросов или предложения, просьба писать на почту: shelepuginivanm@gmail.com
