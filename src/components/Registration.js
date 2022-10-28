@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import bcrypt from 'bcryptjs';
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import '../css/auth-form.css'
@@ -10,24 +10,24 @@ import {SALT} from "../utils/salt";
 
 
 const Registration = () => {
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [grade, setGrade] = useState('')
-    const [birthdate, setBirthdate] = useState('')
-    const [password, setPassword] = useState('')
-    const [repeatedPassword, setRepeatedPassword] = useState('')
+    const usernameRef = useRef()
+    const emailRef = useRef()
+    const gradeRef = useRef()
+    const birthdateRef = useRef()
+    const passwordRef = useRef()
+    const passwordRepeatRef = useRef()
 
     const registration = async () => {
         const userData = {
-                username: username,
-                email: email,
-                birthdate: birthdate.split('-').reverse().join('.'),
-                grade: grade,
-                password: bcrypt.hashSync(password, SALT).toString()
+                username: usernameRef.current.value,
+                email: emailRef.current.value,
+                birthdate: birthdateRef.current.value.split('-').reverse().join('.'),
+                grade: gradeRef.current.value,
+                password: bcrypt.hashSync(passwordRef.current.value, SALT).toString()
             }
-        if (username && email && grade && birthdate && password && repeatedPassword === password) {
+        if (usernameRef.current.value && emailRef.current.value && gradeRef.current.value && birthdateRef.current.value && passwordRef.current.value && passwordRepeatRef.current.value === passwordRef.current.value) {
             const usersRef = collection(firestore, "users")
-            const allUsers = await getDocs(query(usersRef, where("username", "==", username)))
+            const allUsers = await getDocs(query(usersRef, where("username", "==", usernameRef.current.value)))
 
             const usersData = parseUsers(allUsers)
 
@@ -51,48 +51,35 @@ const Registration = () => {
                     <h1 className={'form-header'}>Календарь</h1>
                 </div>
 
-
                 <div className="inputs">
                     <div className="input">
                     <label htmlFor="username">ФИО</label>
-                    <input onChange={(event) => {
-                        setUsername(event.target.value)
-                        }} value={username} type="text" className='input' id="username"/>
+                    <input ref={usernameRef} type="text" className='input' id="username"/>
                 </div>
 
                 <div className="input">
                     <label htmlFor="grade">Класс</label>
-                    <input onChange={(event) => {
-                        setGrade(event.target.value)
-                        }} value={grade} type="text" id="grade"/>
+                    <input ref={gradeRef} type="text" id="grade"/>
                 </div>
 
                 <div className="input">
                     <label htmlFor="email">Email</label>
-                    <input onChange={(event) => {
-                        setEmail(event.target.value)
-                        }} value={email} type="email" id="email"/>
+                    <input ref={emailRef} type="email" id="email"/>
                 </div>
 
                 <div className="input">
                     <label htmlFor="birthdate">Дата рождения</label>
-                    <input onChange={(event) => {
-                        setBirthdate(event.target.value)
-                        }} value={birthdate} type="date" id="birthdate"/>
+                    <input ref={birthdateRef} type="date" id="birthdate"/>
                 </div>
 
                 <div className="input">
                     <label htmlFor="password">Пароль</label>
-                    <input onChange={(event) => {
-                        setPassword(event.target.value)
-                        }} value={password} type="password" id="password"/>
+                    <input ref={passwordRef} type="password" id="password"/>
                 </div>
 
                 <div className="input">
                     <label htmlFor="password-repeat">Повторите пароль</label>
-                    <input onChange={(event) => {
-                        setRepeatedPassword(event.target.value)
-                        }} value={repeatedPassword} type="password" id="password-repeat"/>
+                    <input ref={passwordRepeatRef} type="password" id="password-repeat"/>
                 </div>
                 </div>
 

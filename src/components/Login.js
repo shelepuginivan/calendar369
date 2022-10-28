@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import bcrypt from 'bcryptjs'
 import {INDEX_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import '../css/auth-form.css'
@@ -11,24 +11,25 @@ import {SALT} from "../utils/salt";
 
 
 const Login = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const usernameRef = useRef()
+    const passwordRef = useRef()
 
     const login = async () => {
-        const usersRef = collection(firestore, 'users')
-        const thisUser = await getDocs(query(usersRef, where("username", "==", username), where("password", "==", bcrypt.hashSync(password, SALT).toString())))
-        const thisUserData = parseUsers(thisUser)
-        if (thisUserData.length === 1) {
-            localStorage.setItem('_id', thisUserData[0]._id)
-            localStorage.setItem('status', userStatus(thisUserData[0].username))
-            localStorage.setItem('user', 'true')
-            localStorage.setItem('username', thisUserData[0].username)
-            localStorage.setItem('email', thisUserData[0].email)
-            localStorage.setItem('birthdate', thisUserData[0].birthdate)
-            localStorage.setItem('grade', thisUserData[0].grade)
-            document.location.href = INDEX_ROUTE
+        if (usernameRef.current.value && passwordRef.current.value) {
+            const usersRef = collection(firestore, 'users')
+            const thisUser = await getDocs(query(usersRef, where("username", "==", usernameRef.current.value), where("password", "==", bcrypt.hashSync(passwordRef.current.value, SALT).toString())))
+            const thisUserData = parseUsers(thisUser)
+            if (thisUserData.length === 1) {
+                localStorage.setItem('_id', thisUserData[0]._id)
+                localStorage.setItem('status', userStatus(thisUserData[0].username))
+                localStorage.setItem('user', 'true')
+                localStorage.setItem('username', thisUserData[0].username)
+                localStorage.setItem('email', thisUserData[0].email)
+                localStorage.setItem('birthdate', thisUserData[0].birthdate)
+                localStorage.setItem('grade', thisUserData[0].grade)
+                document.location.href = INDEX_ROUTE
+            }
         }
-
     }
 
     return (
@@ -46,12 +47,12 @@ const Login = () => {
                 <div className={'inputs'}>
                     <div className="input">
                         <label htmlFor="email-input">ФИО</label>
-                        <input value={username} onChange={(event) => setUsername(event.target.value)} id="email-input" type="text"/>
+                        <input ref={usernameRef} id="email-input" type="text"/>
                     </div>
 
                     <div className="input">
                         <label htmlFor="password-input">Пароль</label>
-                        <input value={password} onChange={(event) => setPassword(event.target.value)} id="password-input" type="password"/>
+                        <input ref={passwordRef} id="password-input" type="password"/>
                     </div>
                 </div>
 
