@@ -1,0 +1,30 @@
+.event-participants {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    height: 100vh;
+}
+
+.event-participants-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-participants-header {
+    width: 70%;
+    margin: 18px auto auto;
+}
+
+.participants-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 18px auto 10px auto;
+    background-color: white;
+    padding: 20px;
+    width: 70%;
+    height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 6px #152d6714;
+}

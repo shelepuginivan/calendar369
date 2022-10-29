@@ -1,0 +1,141 @@
+.all-events-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    height: 100vh;
+}
+
+.all-events-page-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.params-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 80vw;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 2px 6px #152d6714;
+    margin: 18px auto 10px auto;
+}
+
+.all-events-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 60vh;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 2px 6px #152d6714;
+    margin: 18px auto 10px auto;
+    overflow-y: auto;
+}
+
+.sort-input {
+    transition: .2s all ease-in;
+    display: flex;
+    height: fit-content;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.sort-input label {
+    transition: .2s all ease-in;
+    color: #999;
+    width: fit-content;
+    margin-right: 5px;
+}
+
+.sort-input input {
+    width: 100%;
+    border: 0;
+    background: transparent;
+}
+
+.sort-input input:focus-within {
+    border-color: #fff;
+    outline: none;
+}
+
+.sort-input:focus-within {
+    border-color: darkgreen;
+}
+
+.sort-input:focus-within > label {
+    color: darkgreen;
+}
+
+.control-btn {
+    transition: .2s all ease-in;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    font-size: 16px;
+    outline: 1px solid;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    justify-self: center;
+}
+
+.btn-search {
+    align-self: center;
+    color: darkgreen;
+    outline-color: darkgreen;
+}
+
+.btn-search:hover {
+    color: #fff;
+    background-color: darkgreen;
+}
+
+.unset-deadline-header-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.unset-deadline-header {
+    color: #999;
+}
+
+@media screen and (max-width: 1030px) {
+    .all-events-wrapper, .params-inputs {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .all-events-wrapper, .params-inputs {
+        width: 95vw;
+    }
+}
+
+@media screen and (max-width: 855px) {
+    .sort-input {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 693px) {
+    .sort-input {
+        font-size: 12px;
+    }
+    .unset-deadline-header {
+        font-size: 24px;
+    }
+}

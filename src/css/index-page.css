@@ -1,0 +1,35 @@
+.index-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    height: 100vh;
+}
+
+.index-page-container {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.index-page-header {
+    width: 100%;
+    margin-inline: auto;
+}
+
+.index-page-container {
+    width: 80%;
+    margin: auto;
+}
+
+.all-events {
+    background-color: white;
+    padding: 20px;
+    overflow-y: auto;
+    height: 70vh;
+    box-shadow: 0 2px 6px #152d6714;
+}
+
+@media screen and (max-width: 500px) {
+ .index-page-container {
+     width: 90%;
+ }
+}

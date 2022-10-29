@@ -1,0 +1,64 @@
+.event-card {
+    padding: 20px;
+    outline: 1px solid #000;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.event-card  .event-card-data {
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+    padding-top: 5px;
+}
+
+.event-data-caption {
+   color: #777;
+    font-weight: lighter;
+}
+
+.control-btn {
+    transition: .2s all ease-in;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    font-size: 16px;
+    outline: 1px solid;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    justify-self: center;
+}
+
+.details-btn {
+    outline-color: #333;
+    color: #333;
+}
+
+.details-btn:hover {
+    background-color: #333;
+    color: white;
+}
+
+.btn-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+@media screen and (max-width: 600px) {
+    .event-card {
+        flex-direction: column;
+    }
+    .details-btn {
+        width: 100%;
+        margin-top: 15px !important;
+    }
+}
+
