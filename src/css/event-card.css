@@ -33,12 +33,12 @@
 }
 
 .details-btn {
-    outline-color: #333;
-    color: #333;
+    outline-color: #2742c7;
+    color: #2742c7;
 }
 
 .details-btn:hover {
-    background-color: #333;
+    background-color: #2742c7;
     color: white;
 }
 
