@@ -106,11 +106,11 @@ const EventPage = () => {
                         <Link to={`/event/${eventId}/edit`} className="control-btn edit-link"><span className="icon-edit"></span> Изменить событие</Link>
                         <Link to={`/event/${eventId}/participants`} className="control-btn edit-link"><span className="icon-participants"></span> Список участников</Link>
                     </div>)
-                    :
+                    : localStorage.getItem('status') === 'student' ?
                     (<div className="event-settings">
                         <h2 className="control-header">Действия</h2>
                         <button onClick={registrationOnEvent} state={String(!isRegOnEvent)} className="control-btn event-registration-btn">{!isRegOnEvent ? (<span><span className="icon-registration"></span> Зарегистрироваться</span>) : (<span><span className="icon-cancel-reg"></span> Отменить регистрацию</span>)}</button>
-                    </div>)
+                    </div>) : (<div></div>)
                 }
             </div>
 
