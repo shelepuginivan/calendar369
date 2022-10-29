@@ -25,7 +25,7 @@ const Registration = () => {
                 grade: gradeRef.current.value,
                 password: await bcrypt.hash(passwordRef.current.value, salt)
             }
-        if (usernameRef.current.value && emailRef.current.value && gradeRef.current.value && birthdateRef.current.value && passwordRef.current.value && passwordRepeatRef.current.value === passwordRef.current.value) {
+        if (usernameRef.current.value && emailRef.current.value && birthdateRef.current.value && passwordRef.current.value && passwordRepeatRef.current.value === passwordRef.current.value) {
             const usersRef = collection(firestore, "users")
             const allUsers = await getDocs(query(usersRef, where("username", "==", usernameRef.current.value)))
 
@@ -59,7 +59,7 @@ const Registration = () => {
 
                 <div className="input">
                     <label htmlFor="grade">Класс</label>
-                    <input ref={gradeRef} type="text" id="grade"/>
+                    <input ref={gradeRef} type="text" placeholder="Если Вы учитель, оставьте это поле пустым" id="grade"/>
                 </div>
 
                 <div className="input">
