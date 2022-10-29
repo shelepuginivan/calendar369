@@ -13,15 +13,38 @@ const AllEvents = () => {
     const [type, setType] = useState('')
 
     const searchEvent = async () => {
+        const eventsRef = collection(firestore, 'events')
         let now = new Date()
-        let condition = (new Date(deadline) <= new Date(now.getFullYear() + 1, now.getMonth(), now.getDate()))
-        if (deadline && condition && !sessionStorage.hasOwnProperty(deadline)) {
-            const eventsRef = collection(firestore, 'events')
+        let dateCondition = (new Date(deadline) <= new Date(now.getFullYear() + 1, now.getMonth(), now.getDate()))
+        let profileCondition = !sessionStorage.hasOwnProperty(profile)
+        let typeCondition = !sessionStorage.hasOwnProperty(type)
+        let typeAndProfileCondition = !sessionStorage.hasOwnProperty(profile + type)
+        if (deadline && dateCondition && !sessionStorage.hasOwnProperty(deadline)) {
             const allEvents = await getDocs(query(eventsRef, where("deadline", "==", deadline.split('-').reverse().join('.'))))
             setEvents(parseEvents(allEvents))
             sessionStorage.setItem(deadline, JSON.stringify(parseEvents(allEvents)))
         } else if (sessionStorage.hasOwnProperty(deadline)) {
             setEvents(JSON.parse(sessionStorage.getItem(deadline)))
+        } else if (type || profile) {
+            if (type && profile && typeAndProfileCondition) {
+                const allEvents = await getDocs(query(eventsRef, where('type', '==', type), where('profile', '==', profile)))
+                setEvents(parseEvents(allEvents))
+                sessionStorage.setItem(type + profile, JSON.stringify(parseEvents(allEvents)))
+            } else if (!typeAndProfileCondition) {
+                setEvents(JSON.parse(sessionStorage.getItem(type + profile)))
+            } else if (type && typeCondition) {
+                const allEvents = await getDocs(query(eventsRef, where('type', '==', type)))
+                setEvents(parseEvents(allEvents))
+                sessionStorage.setItem(type, JSON.stringify(parseEvents(allEvents)))
+            } else if (!typeCondition) {
+                setEvents(JSON.parse(sessionStorage.getItem(type)))
+            } else if (profile && profileCondition) {
+                const allEvents = await getDocs(query(eventsRef, where('profile', '==', profile)))
+                setEvents(parseEvents(allEvents))
+                sessionStorage.setItem(profile, JSON.stringify(parseEvents(allEvents)))
+            } else if (!profileCondition) {
+                setEvents(JSON.parse(sessionStorage.getItem(profile)))
+            }
         }
     }
 
@@ -68,15 +91,14 @@ const AllEvents = () => {
                     <button onClick={searchEvent} className="control-btn btn-search">Поиск <span className="icon-search"></span></button>
                 </div>
                 <div className="all-events-wrapper">
-                    {deadline !== '' ?
+                    {deadline !== '' || profile !== '' || type !== '' ?
                         (parseEventCards(events.filter(event => (
-                        (profile ? event.profile === profile : true) && (type ? event.type === type : true) )
+                        (!profile || event.profile === profile) && (!type || event.type === type) && (!deadline || event.deadline === deadline.split('-').reverse().join('.')))
                     )))
                         :
                         (<div className="unset-deadline-header-container">
-                            <h1 className="unset-deadline-header">Пожалуйста, выберите дату события</h1>
+                            <h1 className="unset-deadline-header">Пожалуйста, заполните одну из характеристик</h1>
                         </div>)}
-
                 </div>
             </div>
         </div>
