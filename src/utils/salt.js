@@ -1,1 +1,0 @@
-export const SALT = '$2a$10$WHDceESz8UQh3bS.v.MZi.';
