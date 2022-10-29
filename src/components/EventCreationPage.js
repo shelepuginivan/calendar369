@@ -1,24 +1,31 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import Header from "./Header";
 import {addDoc, collection, serverTimestamp} from "firebase/firestore";
 import {firestore} from "../index";
 import {MY_EVENTS_ROUTE} from "../utils/consts";
 
 const EventCreationPage = () => {
-    const [title, setTitle] = useState('')
-    const [desc, setDesc] = useState('')
-    const [profile, setProfile] = useState('')
-    const [type, setType] = useState('')
-    const [deadline, setDeadline] = useState('')
+    const titleRef = useRef()
+    const descRef = useRef()
+    const profileRef = useRef()
+    const typeRef = useRef()
+    const deadlineRef = useRef()
 
     const createEvent = async () => {
         const eventRef = collection(firestore, 'events')
+        const title = titleRef.current.value
+        const desc = descRef.current.value
+        const deadline = deadlineRef.current.value.split('-').reverse().join('.')
+        const profile = profileRef.current.value
+        const type = profileRef.current.value
+
+
         const newEventData = {
                 title: title,
                 description: desc,
                 creator: localStorage.getItem('username'),
                 creationDate: serverTimestamp(),
-                deadline: deadline.split('-').reverse().join('.'),
+                deadline: deadline,
                 profile: profile,
                 type: type
             }
@@ -39,15 +46,15 @@ const EventCreationPage = () => {
                 <div className="event-creation-inputs">
                     <div className="event-input">
                         <label htmlFor="input-title">Название</label>
-                        <input value={title} onChange={event => setTitle(event.target.value)} id="input-title" type="text"/>
+                        <input ref={titleRef} id="input-title" type="text"/>
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-desc">Описание</label>
-                        <textarea value={desc} onChange={event => setDesc(event.target.value)} id="input-desc" />
+                        <textarea ref={descRef} id="input-desc" />
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-profile">Профиль</label>
-                        <input value={profile} onChange={event => setProfile(event.target.value)} id="input-profile"  type="text" list="profile-list"/>
+                        <input ref={profileRef} id="input-profile"  type="text" list="profile-list"/>
                         <datalist id="profile-list">
                             <option value="Математика"></option>
                             <option value="Физика"></option>
@@ -69,7 +76,7 @@ const EventCreationPage = () => {
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-type">Тип</label>
-                        <input value={type} onChange={event => setType(event.target.value)} id="input-type" type="text" list="data-list"/>
+                        <input ref={typeRef} id="input-type" type="text" list="data-list"/>
                         <datalist id="data-list">
                             <option value="Олимпиада"></option>
                             <option value="Конференция"></option>
@@ -78,7 +85,7 @@ const EventCreationPage = () => {
                     </div>
                     <div className="event-input">
                         <label htmlFor="input-deadline">Дата события</label>
-                        <input value={deadline} onChange={event => setDeadline(event.target.value)} id="input-deadline" type="date"/>
+                        <input ref={deadlineRef} id="input-deadline" type="date"/>
                     </div>
                     <button onClick={createEvent} className="btn-confirm-event-data"><span className="icon-confirm"></span> Создать событие</button>
                 </div>
