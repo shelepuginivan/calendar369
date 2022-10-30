@@ -17,7 +17,7 @@ const EventCreationPage = () => {
         const desc = descRef.current.value
         const deadline = deadlineRef.current.value.split('-').reverse().join('.')
         const profile = profileRef.current.value
-        const type = profileRef.current.value
+        const type = typeRef.current.value
 
 
         const newEventData = {
