@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from "./Header";
 import '../css/index-page.css'
-import {collection, getDocs, query, where} from "firebase/firestore";
+import {collection, getDocs, query} from "firebase/firestore";
 import {firestore} from "../index";
 import {parseEvents} from "../utils/parseEvents";
 import {parseEventCards} from "../utils/parseEventCards";
@@ -13,8 +13,8 @@ const IndexPage = () => {
     useEffect(() => {
         const getRecentEvents = async () => {
             const eventsRef = collection(firestore, 'events')
-            const recentEvents = await getDocs(query(eventsRef), where("deadline", ">=", Date.now()))
-            setEvents(parseEvents(recentEvents).sort(compareByCreationDate).slice(0, 20))
+            const recentEvents = await getDocs(query(eventsRef))
+            setEvents(parseEvents(recentEvents).filter(event => Date.parse(event.deadline.split('.').reverse().join('-')) >= Date.now()).sort(compareByCreationDate).slice(0, 20))
             sessionStorage.setItem('recentEvents', JSON.stringify(parseEvents(recentEvents).sort(compareByCreationDate).slice(0, 20)))
         }
         if (!sessionStorage.hasOwnProperty('recentEvents')) {
