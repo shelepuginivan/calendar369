@@ -62,7 +62,8 @@ const EventPage = () => {
             "eventType": eventData.type,
             "registeredAt": serverTimestamp(),
             "userEmail": localStorage.getItem("email"),
-            "username": localStorage.getItem("username")
+            "username": localStorage.getItem("username"),
+            "grade": localStorage.getItem('grade')
         }
         if (isRegOnEvent) {
             const thisEventRegDoc = doc(firestore, 'eventRegistrations', thisEventReg[0]._id)
