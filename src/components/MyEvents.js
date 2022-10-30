@@ -16,8 +16,8 @@ const MyEvents = () => {
         const getAllEvents = async () => {
         const eventsRef = collection(firestore, 'events')
         const allEventsDocs = await getDocs(query(eventsRef, where("creator", "==", username)))
-        setAllEvents(parseEvents(allEventsDocs))
-        sessionStorage.setItem('myEvents', JSON.stringify(parseEvents(allEventsDocs)))
+        setAllEvents(parseEvents(allEventsDocs).filter(item => Date.parse(item.deadline.split('.').reverse().join('-')) >= Date.now()))
+        sessionStorage.setItem('myEvents', JSON.stringify(parseEvents(allEventsDocs).filter(item => Date.parse(item.deadline.split('.').reverse().join('-')) >= Date.now())))
     }
     if (!sessionStorage.hasOwnProperty('myEvents')) {
          getAllEvents()
