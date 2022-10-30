@@ -29,7 +29,8 @@ const EventParticipants = () => {
             thisEventRegs.forEach(eventRegData => {
                 participants.push({
                     username: eventRegData.data().username,
-                    email: eventRegData.data().userEmail
+                    email: eventRegData.data().userEmail,
+                    grade: eventRegData.data().grade
                 })
             })
             console.log(participants)
