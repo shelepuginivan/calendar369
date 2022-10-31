@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import Header from "./Header";
-import {addDoc, collection, serverTimestamp} from "firebase/firestore";
+import {addDoc, collection} from "firebase/firestore";
 import {firestore} from "../index";
 import {MY_EVENTS_ROUTE} from "../utils/consts";
 

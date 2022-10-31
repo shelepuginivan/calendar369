@@ -14,7 +14,8 @@ const UserRegisteredOnEvents = () => {
         const getEventsUserRegisteredOn = async () => {
               if (!sessionStorage.hasOwnProperty('userRegisteredOnEvents')) {
                   const eventsRegsRef = collection(firestore, 'eventRegistrations')
-                  const eventsUserRegisteredOnDocs = await getDocs(query(eventsRegsRef, where("username", "==", localStorage.getItem('username'))))
+                  const eventsUserRegisteredOnDocs = await getDocs(query(eventsRegsRef, where('eventDeadline', '>=', Date.now()) && where("username", "==", localStorage.getItem('username'))))
+                  console.log(parseEventRegs(eventsUserRegisteredOnDocs))
                   setUserRegisteredOnEvent(parseEventRegs(eventsUserRegisteredOnDocs))
                   sessionStorage.setItem('userRegisteredOnEvents', JSON.stringify(parseEventRegs(eventsUserRegisteredOnDocs)))
               }

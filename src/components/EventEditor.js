@@ -6,6 +6,7 @@ import {MY_EVENTS_ROUTE} from "../utils/consts";
 import Header from "./Header";
 import {useParams} from "react-router-dom";
 import '../css/event-creation-page.css'
+import {dateToFormat} from "../utils/dateToFormat";
 
 const EventEditor = () => {
     const [title, setTitle] = useState('')
@@ -25,7 +26,7 @@ const EventEditor = () => {
             setDesc(thisEventDoc.data().description)
             setProfile(thisEventDoc.data().profile)
             setType(thisEventDoc.data().type)
-            setDeadline(thisEventDoc.data().deadline)
+            setDeadline(dateToFormat(new Date(thisEventDoc.data().deadline)).split('.').reverse().join('-'))
         }
         getThisEvent().then(() => console.log('success'))
     }, [eventId])
