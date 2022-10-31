@@ -28,7 +28,7 @@ const EventEditor = () => {
             setType(thisEventDoc.data().type)
             setDeadline(dateToFormat(new Date(thisEventDoc.data().deadline)).split('.').reverse().join('-'))
         }
-        getThisEvent().then(() => console.log('success'))
+        getThisEvent()
     }, [eventId])
 
     const editEvent = async () => {
