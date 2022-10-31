@@ -8,21 +8,20 @@ import {parseEventCards} from "../utils/parseEventCards";
 import {compareByDeadline} from "../utils/compareByDeadline";
 
 const MyEvents = () => {
-    const [allEvents, setAllEvents] = useState(JSON.parse(sessionStorage.getItem('myEvents')) ?? [])
+    const [events, setEvents] = useState(JSON.parse(sessionStorage.getItem('actualEvents')) ?? [])
 
-
-    const username = localStorage.getItem('username')
     useEffect(() => {
-        const getAllEvents = async () => {
-        const eventsRef = collection(firestore, 'events')
-        const allEventsDocs = await getDocs(query(eventsRef, where("creator", "==", username)))
-        setAllEvents(parseEvents(allEventsDocs).filter(item => Date.parse(item.deadline.split('.').reverse().join('-')) >= Date.now()))
-        sessionStorage.setItem('myEvents', JSON.stringify(parseEvents(allEventsDocs).filter(item => Date.parse(item.deadline.split('.').reverse().join('-')) >= Date.now())))
-    }
-    if (!sessionStorage.hasOwnProperty('myEvents')) {
-         getAllEvents()
-    }
-    }, [username])
+        const getActualEvents = async () => {
+            const eventsRef = collection(firestore, 'events')
+            const recentEvents = await getDocs(query(eventsRef, where('deadline', '>=', Date.now())))
+            setEvents(parseEvents(recentEvents))
+            sessionStorage.setItem('actualEvents', JSON.stringify(parseEvents(recentEvents)))
+        }
+        if (!sessionStorage.hasOwnProperty('actualEvents')) {
+            getActualEvents()
+        }
+    }, [])
+
 
     return (
         <div className="my-events">
@@ -30,7 +29,7 @@ const MyEvents = () => {
             <div className="my-events-container">
                 <h1 className="my-events-header">Мои события</h1>
                 <div className="event-cards">
-                    {parseEventCards(allEvents.sort(compareByDeadline))}
+                    {parseEventCards(events.filter(event => event.creator === localStorage.getItem('username')).sort(compareByDeadline))}
                 </div>
             </div>
         </div>

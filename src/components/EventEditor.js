@@ -37,7 +37,7 @@ const EventEditor = () => {
                 description: desc,
                 creator: localStorage.getItem('username'),
                 creationDate: serverTimestamp(),
-                deadline: deadline.split('-').reverse().join('.'),
+                deadline: Date.parse(deadline),
                 profile: profile,
                 type: type
             }

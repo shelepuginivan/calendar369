@@ -6,6 +6,7 @@ import Header from "./Header";
 import '../css/event-page.css'
 import {MY_EVENTS_ROUTE} from "../utils/consts";
 import {parseEventRegs} from "../utils/parseEventRegistrations";
+import {dateToFormat} from "../utils/dateToFormat";
 
 const EventPage = () => {
     const [eventData, setEventData] = useState({})
@@ -98,7 +99,7 @@ const EventPage = () => {
                         <p className="event-data-caption">Куратор</p>
                         <p className="event-data">{eventData.creator}</p>
                         <p className="event-data-caption">Дата события</p>
-                        <p className="event-data">{eventData.deadline}</p>
+                        <p className="event-data">{dateToFormat(new Date(eventData.deadline))}</p>
                     </div>
                 {eventData.creator === localStorage.getItem('username') ?
                     (<div className="event-settings">

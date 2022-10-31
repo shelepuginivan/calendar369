@@ -15,7 +15,7 @@ const EventCreationPage = () => {
         const eventRef = collection(firestore, 'events')
         const title = titleRef.current.value
         const desc = descRef.current.value
-        const deadline = deadlineRef.current.value.split('-').reverse().join('.')
+        const deadline = Date.parse(deadlineRef.current.value)
         const profile = profileRef.current.value
         const type = typeRef.current.value
 
@@ -24,7 +24,7 @@ const EventCreationPage = () => {
                 title: title,
                 description: desc,
                 creator: localStorage.getItem('username'),
-                creationDate: serverTimestamp(),
+                creationDate: Date.now(),
                 deadline: deadline,
                 profile: profile,
                 type: type
@@ -32,9 +32,8 @@ const EventCreationPage = () => {
         if (title && desc && profile && type && deadline) {
             await addDoc(eventRef, newEventData)
             sessionStorage.removeItem('myEvents')
-            sessionStorage.removeItem('recentEvents')
+            sessionStorage.removeItem('actualEvents')
             document.location.href = MY_EVENTS_ROUTE
-
         }
     }
 

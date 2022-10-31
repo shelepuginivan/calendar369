@@ -6,6 +6,7 @@ import {firestore} from "../index";
 import {parseEventRegs} from "../utils/parseEventRegistrations";
 import {parseEventCardFromEventReg} from "../utils/parseEventCardFromEventReg";
 import '../css/user-registered-on-events.css'
+import {compareByDeadline} from "../utils/compareByDeadline";
 
 const UserRegisteredOnEvents = () => {
     const [userRegisteredOnEvent, setUserRegisteredOnEvent] = useState(JSON.parse(sessionStorage.getItem('userRegisteredOnEvents')) ?? [])
@@ -14,8 +15,8 @@ const UserRegisteredOnEvents = () => {
               if (!sessionStorage.hasOwnProperty('userRegisteredOnEvents')) {
                   const eventsRegsRef = collection(firestore, 'eventRegistrations')
                   const eventsUserRegisteredOnDocs = await getDocs(query(eventsRegsRef, where("username", "==", localStorage.getItem('username'))))
-                  setUserRegisteredOnEvent(parseEventRegs(eventsUserRegisteredOnDocs).filter(item => Date.parse(item.eventDeadline.split('.').reverse().join('-')) >= Date.now()))
-                  sessionStorage.setItem('userRegisteredOnEvents', JSON.stringify(parseEventRegs(eventsUserRegisteredOnDocs).filter(item => Date.parse(item.deadline.split('.').reverse().join('-')) >= Date.now())))
+                  setUserRegisteredOnEvent(parseEventRegs(eventsUserRegisteredOnDocs))
+                  sessionStorage.setItem('userRegisteredOnEvents', JSON.stringify(parseEventRegs(eventsUserRegisteredOnDocs)))
               }
         }
         getEventsUserRegisteredOn()
@@ -29,7 +30,7 @@ const UserRegisteredOnEvents = () => {
             <div className="user-registered-on-events-container">
                 <h1 className="user-registered-on-events-header">События, на которые вы записаны</h1>
                 <div className="user-registered-on-events-wrapper">
-                    {parseEventCards(parseEventCardFromEventReg(userRegisteredOnEvent))}
+                    {parseEventCards(parseEventCardFromEventReg(userRegisteredOnEvent.sort(compareByDeadline)))}
                 </div>
             </div>
         </div>
