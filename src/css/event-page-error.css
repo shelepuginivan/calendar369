@@ -1,0 +1,17 @@
+.event-page-error {
+    margin-top: 48vh;
+    margin-bottom: auto;
+    text-align: center;
+    color: #999;
+}
+
+.err-message {
+    margin-bottom: 10px;
+}
+
+.err-link {
+    display: inline;
+    width: 100%;
+    text-align: center;
+    color: #0969da;
+}

@@ -32,7 +32,7 @@ const AllEvents = () => {
     }, [])
 
 
-    useEffect(() => setAnyEventFound(events.filter(event => eventIsValid(event)).length !== 0),[deadline, type, profile, events, eventIsValid])
+    useEffect(() => setAnyEventFound(events.filter(event => eventIsValid(event)).length !== 0),[deadline, type, profile, events])
 
     return (
         <div className="all-events-page">

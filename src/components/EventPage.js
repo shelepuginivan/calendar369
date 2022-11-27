@@ -7,6 +7,7 @@ import '../css/event-page.css'
 import {MY_EVENTS_ROUTE} from "../utils/consts";
 import {parseEventRegs} from "../utils/parseEventRegistrations";
 import {dateToFormat} from "../utils/dateToFormat";
+import EventPageError from "./EventPageError";
 
 const EventPage = () => {
     const [eventData, setEventData] = useState({})
@@ -88,7 +89,9 @@ const EventPage = () => {
         setIsRegOnEvent(!isRegOnEvent)
     }
 
-    return (
+
+    return eventData
+        ? (
         <div className="event-page">
             <Header />
                 <div className={'event-content-container'}>
@@ -117,7 +120,11 @@ const EventPage = () => {
             </div>
 
         </div>
-    );
+    )
+        : (
+            <EventPageError />
+        )
+
 };
 
 export default React.memo(EventPage);
